@@ -11,7 +11,7 @@ function CarouselComponent() {
         autoPlay={true}
         infiniteLoop={true}
         showIndicators={false}
-        showThumbs={true}
+        showThumbs={false}
       >
         {img.map((imageItemLink) => {
           return <img src={imageItemLink} />;
