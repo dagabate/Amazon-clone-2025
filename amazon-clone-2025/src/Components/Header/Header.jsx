@@ -30,7 +30,7 @@ function Header() {
             <select name="" id="">
               <option value="">All</option>
             </select>
-            <input type="text" />
+            <input type="text" placeholder="Search Amazon" />
             <BsSearch size={25} />
           </div>
           <div className={classes.order_container}>
@@ -60,7 +60,7 @@ function Header() {
 
             {/* cart */}
             <a to={"/cart"} className={classes.cart}>
-              <BiCart size={35}/>
+              <BiCart size={35} />
               <span>0</span>
             </a>
           </div>
