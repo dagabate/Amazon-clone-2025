@@ -4,6 +4,7 @@ import Header from "./Components/Header/Header";
 import LowerHeader from "./Components/Header/LowerHeader";
 import CarouselComponent from "./Components/Carousel/Carousel";
 import Category from "./Components/Category/Category";
+import Product from "./Components/Product/Product";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
       <LowerHeader />
       <CarouselComponent />
       <Category />
+      <Product/>
     </>
   );
 }
