@@ -12,6 +12,7 @@ function Results() {
     axios
       .get(`${producturl}/products/category/${categoryName}`)
       .then((res) => {
+        
         setResults(res.data);
       })
       .catch((err) => {

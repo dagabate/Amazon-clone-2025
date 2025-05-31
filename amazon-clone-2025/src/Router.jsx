@@ -6,6 +6,7 @@ import Cart from "./Pages/Cart/Cart";
 import Orders from "./Pages/Orders/Orders";
 import Payment from "./Pages/Payment/Payment";
 import Results from "./Pages/Results/Results";
+import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 function Routing() {
   return (
     <Router>
@@ -16,6 +17,7 @@ function Routing() {
         <Route path="/orders" element={<Orders />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/category/:categoryName" element={<Results />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
       </Routes>
     </Router>
   );
