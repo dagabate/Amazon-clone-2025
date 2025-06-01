@@ -5,11 +5,12 @@ import { BsSearch } from "react-icons/bs";
 import { BiCart } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
+import LowerHeader from "./LowerHeader";
 
 function Header() {
   const [{ basket }, dispatch] = useContext(DataContext);
   return (
-    <section>
+    <section className={classes.fixed}>
       <section>
         <div className={classes.header_container}>
           <div className={classes.logo_container}>
@@ -69,6 +70,7 @@ function Header() {
           </div>
         </div>
       </section>
+      <LowerHeader />
     </section>
   );
 }
