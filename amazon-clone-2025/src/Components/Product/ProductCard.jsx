@@ -14,8 +14,8 @@ function ProductCard({ product }) {
         <h3>{title}</h3>
         <div className="">
           <div className={classes.rating}>
-            <Rating value={rating?.rate || 0} precision={0.1} size="small" />
-            <small>{rating?.count || 0}</small>
+            <Rating value={rating?.rate} precision={0.1} size="small" />
+            <small>{rating?.count}</small>
           </div>
 
           <div className="">
