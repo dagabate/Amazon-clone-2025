@@ -9,7 +9,7 @@ import Results from "./Pages/Results/Results";
 import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 function Routing() {
   return (
-    <Router>
+    <Router basename="/Amazon-clone-2025">
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<SignUp />} />
