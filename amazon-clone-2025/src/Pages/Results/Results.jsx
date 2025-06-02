@@ -12,7 +12,6 @@ function Results() {
     axios
       .get(`${producturl}/products/category/${categoryName}`)
       .then((res) => {
-        
         setResults(res.data);
       })
       .catch((err) => {
@@ -28,7 +27,7 @@ function Results() {
         <hr />
         <div className={classes.products_container}>
           {results?.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} renderAdd={true} />
           ))}
         </div>
       </section>
