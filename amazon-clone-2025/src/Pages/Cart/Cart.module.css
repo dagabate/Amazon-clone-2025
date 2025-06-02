@@ -3,14 +3,15 @@
   gap: 20px;
   margin-top: 20px;
   justify-content: center;
-  
+}
+.container div:not(.subtotal) {
+  height: auto !important;
 }
 .container img {
   width: 100px !important;
 }
 .cart_container {
   padding: 20px;
-
 }
 .cart_container h2,
 .cart_container h3 {
