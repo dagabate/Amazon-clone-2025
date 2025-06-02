@@ -6,11 +6,25 @@ import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { Link } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
+import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 function Cart() {
   const [{ basket, user }, dispatch] = useContext(DataContext);
   const total = basket.reduce((amount, item) => {
     return item.price * item.amount + amount;
   }, 0);
+  const increment = (item) => {
+    dispatch({
+      type: Type.ADD_TO_BASKET,
+      item: { ...item, amount: 1 },
+    });
+  };
+  const decrement = (item) => {
+    dispatch({
+      type: Type.REMOVE_FROM_BASKET,
+      item: { ...item, amount: 1 },
+    });
+  };
 
   return (
     <Layout>
@@ -25,12 +39,29 @@ function Cart() {
           ) : (
             basket?.map((item) => {
               return (
-                <ProductCard
-                  product={item}
-                  flex={true}
-                  renderDesc={true}
-                  renderAdd={false}
-                />
+                <section className={classes.cart_product}>
+                  <ProductCard
+                    product={item}
+                    flex={true}
+                    renderDesc={true}
+                    renderAdd={false}
+                  />
+                  <div className={classes.btn_container}>
+                    <button
+                      className={classes.btn}
+                      onClick={() => increment(item)}
+                    >
+                      <IoIosArrowUp size={30} />
+                    </button>
+                    <span>{item.amount}</span>
+                    <button
+                      className={classes.btn}
+                      onClick={() => decrement(item)}
+                    >
+                      <IoIosArrowDown size={30} />
+                    </button>
+                  </div>
+                </section>
               );
             })
           )}
