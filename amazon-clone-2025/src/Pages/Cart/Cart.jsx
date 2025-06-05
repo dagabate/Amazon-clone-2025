@@ -41,6 +41,7 @@ function Cart() {
               return (
                 <section className={classes.cart_product}>
                   <ProductCard
+                    key={item.id}
                     product={item}
                     flex={true}
                     renderDesc={true}
@@ -77,7 +78,7 @@ function Cart() {
               <input type="checkbox" />
               <small>This order contains a gift</small>
             </span>
-            <Link to="payments">Continue to checkout</Link>
+            <Link to="/payments">Continue to checkout</Link>
           </div>
         )}
 
