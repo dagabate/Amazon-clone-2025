@@ -11,7 +11,7 @@ import {
 import { useContext } from "react";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import Cliploader from "react-spinners/ClipLoader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Auth() {
   const [email, setEmail] = useState("");
@@ -20,6 +20,8 @@ function Auth() {
   const [user, dispatch] = useContext(DataContext);
   const [loading, setLoading] = useState({ signIn: false, signUp: false });
   const navigate = useNavigate();
+  const navStateData = useLocation();
+
   const authHandler = (e) => {
     e.preventDefault();
 
@@ -31,7 +33,7 @@ function Auth() {
           // Signed in
           dispatch({ type: "SET_USER", user: userCredential.user });
           setLoading({ ...loading, signIn: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((error) => {
           setError(error.message);
@@ -44,7 +46,7 @@ function Auth() {
         .then((userCredential) => {
           dispatch({ type: "SET_USER", user: userCredential.user });
           setLoading({ ...loading, signUp: false });
-          navigate("/");
+          navigate(navStateData?.state?.redirect || "/");
         })
         .catch((error) => {
           setError(error.message);
@@ -68,6 +70,18 @@ function Auth() {
 
         <div className={classes.loginContainer}>
           <h1>Sign-In</h1>
+          {navStateData.state?.msg && (
+          <small
+            style={{
+              color: "red",
+              padding: "5px",
+              fontWeight: "bold",
+              textAlign: "center",
+            }}
+          >
+            {navStateData.state?.msg}
+          </small>
+          )}
           <form action="">
             <div className={classes.formGroup}>
               <label htmlFor="email">Email</label>
