@@ -39,9 +39,8 @@ function Cart() {
           ) : (
             basket?.map((item) => {
               return (
-                <section className={classes.cart_product}>
+                <section key={item.id} className={classes.cart_product}>
                   <ProductCard
-                    key={item.id}
                     product={item}
                     flex={true}
                     renderDesc={true}
