@@ -36,7 +36,7 @@ function Payment() {
       setProcessing(true);
 
       const response = await axiosInstance.post(
-        `http://127.0.0.1:5001/clone-a3c17/us-central1/api/payments/create?total=${
+        `https://us-central1-clone-a3c17.cloudfunctions.net/api/payments/create?total=${
           total * 100
         }`
       );
