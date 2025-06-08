@@ -27,10 +27,11 @@
   color: black;
 }
 .category_container {
-    position: relative;
-    margin-top: -10%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    place-items: center;
-  }
-  
+  position: relative;
+  margin-top: -10%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+
+  place-items: center;
+  margin: auto;
+}

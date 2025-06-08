@@ -31,11 +31,11 @@ function Cart() {
       <section className={classes.container}>
         <div className={classes.cart_container}>
           <h2>Hello</h2>
-          <h3>Your shopping basket</h3>
+          <h3>This is your shopping basket</h3>
           <hr />
 
           {basket?.length == 0 ? (
-            <p>Oops: No item in your cart</p>
+            <p style={{ paddingLeft: "13px" }}>Oops: No item in your cart</p>
           ) : (
             basket?.map((item) => {
               return (

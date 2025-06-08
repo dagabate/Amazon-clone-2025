@@ -10,9 +10,10 @@ import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/Firebase";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
+import { Type } from "../../Utility/action.type";
 
 function Payment() {
-  const [{ user, basket }] = useContext(DataContext);
+  const [{ user, basket }, dispatch] = useContext(DataContext);
   const totalItem = basket?.reduce((amount, item) => {
     return item.amount + amount;
   }, 0);
@@ -41,32 +42,16 @@ function Payment() {
       );
 
       const clientSecret = response.data.clientSecret;
-      console.log("Client Secret:", clientSecret);
 
       const confirmation = await stripe.confirmCardPayment(clientSecret, {
         payment_method: { card: elements.getElement(CardElement) },
       });
-
-      console.log("Confirmation:", confirmation);
 
       if (confirmation.error) {
         throw new Error(confirmation.error.message);
       }
 
       const paymentIntent = confirmation.paymentIntent;
-      console.log("Payment Intent:", paymentIntent);
-
-      console.log("User UID:", user?.uid);
-
-      if (!user?.uid) {
-        console.error("User UID is missing!");
-        return;
-      }
-
-      if (!paymentIntent?.id) {
-        console.error("Payment Intent ID is missing!");
-        return;
-      }
 
       // ✅ Correct Modular Firestore Write
       await setDoc(
@@ -79,13 +64,12 @@ function Payment() {
           amount: paymentIntent.amount,
           created: paymentIntent.created,
         }
-      )
-        .then(() => console.log("✅ Order saved to Firestore!"))
-        .catch((error) => console.error("❌ Firestore write error:", error));
+      );
+      // Clear the basket after successful payment
+      dispatch({ type: Type.EMPTY_BASKET });
       setProcessing(false);
       navigate("/orders", { state: { msg: "you have placed new order" } });
     } catch (error) {
-      console.error("❌ Payment error:", error);
       setCardError(error.message || "Payment failed. Please try again.");
       setProcessing(false);
     }
